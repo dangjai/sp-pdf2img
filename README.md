@@ -4,7 +4,7 @@
 
 ## เริ่มใช้งาน
 
-ต้องใช้ Node.js 22.12 ขึ้นไป และ npm
+ต้องใช้ Node.js 22.13 ขึ้นไป หรือ Node.js 24 และ npm
 
 ```bash
 npm install
@@ -56,3 +56,9 @@ Production build อยู่ใน `dist/` สำหรับให้บริ
 
 รูปภาพรองรับ JPG/JPEG, PNG, WebP และ BMP ที่เบราว์เซอร์อ่านได้ ไม่เกิน 40 ล้านพิกเซล และด้านละ 16,384 พิกเซล ไฟล์เสียหรือไม่มีกรอบสีน้ำเงินจะแสดงข้อผิดพลาด
 # sp-pdf2img
+
+## Deploy ไป Azure Static Web Apps
+
+Workflow อยู่ที่ `.github/workflows/azure-static-web-apps-black-pond-07d383300.yml` ใช้ Node.js 24 ติดตั้งด้วย `npm ci --include=dev` และ build ด้วย `npm run build` จากนั้นส่งโฟลเดอร์ `dist` ไป Azure โดยตั้ง `skip_app_build: true` เพื่อไม่ให้ Azure build ซ้ำ
+
+เมื่อ push เข้า `main` จะ deploy production ส่วน pull request จะใช้ preview deployment และปิด preview เมื่อปิด PR ใช้ GitHub Actions secret เดิมชื่อ `AZURE_STATIC_WEB_APPS_API_TOKEN_BLACK_POND_07D383300` ซึ่งต้องมี deployment token ของ Azure Static Web App นี้
